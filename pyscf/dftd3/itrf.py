@@ -207,7 +207,9 @@ def grad(scf_grad):
      [-1.70497052 -1.89423883  1.2794798 ]]
     '''
     from pyscf.grad import rhf as rhf_grad
-    assert(isinstance(scf_grad, rhf_grad.Gradients))
+    from pyscf.grad import uhf as uhf_grad
+
+    assert(isinstance(scf_grad, (rhf_grad.Gradients, uhf_grad.Gradients)))
 
     # Ensure that the zeroth order results include DFTD3 corrections
     if not getattr(scf_grad.base, 'with_dftd3', None):
